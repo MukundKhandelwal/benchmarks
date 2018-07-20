@@ -35,13 +35,13 @@ import variable_mgr_util
 from platforms import util as platforms_util
 
 
-def _check_has_gpu():
-  if not test.is_gpu_available(cuda_only=True):
-    raise ValueError(
-        """You have asked to run part or all of this on GPU, but it appears
-        that no GPU is available. If your machine has GPUs it is possible you
-        do not have a version of TensorFlow with GPU support. To build with GPU
-        support, add --config=cuda to the build flags.\n """)
+#def _check_has_gpu():
+ # if not test.is_gpu_available(cuda_only=True):
+  #  raise ValueError(
+   #     """You have asked to run part or all of this on GPU, but it appears
+    #    that no GPU is available. If your machine has GPUs it is possible you
+     #   do not have a version of TensorFlow with GPU support. To build with GPU
+      #  support, add --config=cuda to the build flags.\n """)
 
 
 class TfCnnBenchmarksModelTest(tf.test.TestCase):
@@ -69,7 +69,7 @@ class TfCnnBenchmarksModelTest(tf.test.TestCase):
     return False
 
   def testSaveLoadModel(self):
-    _check_has_gpu()
+    #_check_has_gpu()
     if not self.get_model_name() or not self.model_save_load_test():
       return
 
@@ -139,7 +139,7 @@ class TfCnnBenchmarksModelTest(tf.test.TestCase):
                                                     moving_var_value.dtype)))
 
   def testModel(self):
-    _check_has_gpu()
+    #_check_has_gpu()
     if not self.get_model_name() or not self.model_execution_test():
       return
 
@@ -221,7 +221,7 @@ class TfCnnBenchmarksModelTest(tf.test.TestCase):
                      fp16_inc_loss_scale_every_n=10):
     if not self.get_model_name():
       return
-    _check_has_gpu()
+    #_check_has_gpu()
 
     params = benchmark_cnn.make_params(
         model=self.get_model_name(),
@@ -428,7 +428,7 @@ class TfCnnBenchmarksTest(tf.test.TestCase):
 
   def setUp(self):
     super(TfCnnBenchmarksTest, self).setUp()
-    _check_has_gpu()
+    #_check_has_gpu()
     benchmark_cnn.setup(benchmark_cnn.make_params())
 
   def _run_benchmark_cnn(self, params):
@@ -997,7 +997,7 @@ class VariableUpdateTest(tf.test.TestCase):
 
   def setUp(self):
     super(VariableUpdateTest, self).setUp()
-    _check_has_gpu()
+    #_check_has_gpu()
     benchmark_cnn.setup(benchmark_cnn.make_params())
 
   def _get_benchmark_cnn_losses(self, inputs, params):
